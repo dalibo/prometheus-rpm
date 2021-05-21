@@ -1,0 +1,7 @@
+DATA_SOURCE_NAME="user=postgres host=/var/run/postgresql/ sslmode=disable"
+PG_EXPORTER_WEB_LISTEN_ADDRESS=:9187
+PG_EXPORTER_AUTO_DISCOVER_DATABASES=true
+# Queries File for PostgreSQL 13
+PG_EXPORTER_EXTEND_QUERY_PATH=/etc/prometheus/postgres_exporter_queries-pg13.yaml
+# Use this file below for PostgreSQL <= 12
+#PG_EXPORTER_EXTEND_QUERY_PATH=/etc/prometheus/postgres_exporter_queries.yaml

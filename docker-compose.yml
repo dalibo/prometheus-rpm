@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  centos7:
+    image: rpmbuild/centos7
+    environment:
+    - VERSION
+    - PKG
+    volumes:
+    - .:/workspace
+    command: /workspace/build.sh ${PKG}
+
+  centos8:
+    build:
+      context: .
+      dockerfile: Dockerfile.builder8
+    image: dalibo/prometheus-builder:centos8
+    environment:
+    - VERSION
+    volumes:
+    - .:/workspace
+    command: /workspace/build.sh ${PKG}

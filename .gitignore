@@ -1,0 +1,10 @@
+prometheus-*.el7.centos.x86_64.rpm
+prometheus-*.tar.gz
+exporters/postgres_exporter-*.tar.gz
+postgres_exporter-*.el7.centos.x86_64.rpm
+exporters/node_exporter-*.tar.gz
+node_exporter-*.el7.centos.x86_64.rpm
+alertmanager/alertmanager-0.21.0.tar.gz
+alertmanager-0.21.0-1.el7.centos.x86_64.rpm
+build
+build/*
