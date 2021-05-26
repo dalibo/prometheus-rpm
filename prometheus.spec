@@ -38,7 +38,8 @@ fi
 %{__cp} -r console_libraries %{buildroot}/var/lib/prometheus
 %{__install} -d -m 750 %{buildroot}/var/lib/prometheus/data
 
-%{__install} -d %{buildroot}/etc/prometheus
+%{__install} -d -m 750 %{buildroot}/etc/prometheus
+%{__install} -m 640 prometheus.yml %{buildroot}/etc/prometheus
 
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/prometheus.service
@@ -47,12 +48,13 @@ fi
 %{__install} -m 755 prometheus %{buildroot}/usr/bin/prometheus
 %{__install} -m 755 promtool %{buildroot}/usr/bin/promtool
 
-cp prometheus.yml %{buildroot}/etc/prometheus
+
 
 
 %files
 %defattr(-,prometheus,prometheus)
-/etc/prometheus
+%dir /etc/prometheus
+%config(noreplace) /etc/prometheus/prometheus.yml
 /var/lib/prometheus
 %attr(-,root,root)/usr/bin/prometheus
 %attr(-,root,root)/usr/bin/promtool
