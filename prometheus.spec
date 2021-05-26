@@ -35,7 +35,9 @@ fi
 %install
 %{__install} -d %{buildroot}/var/lib/prometheus
 %{__install} -d %{buildroot}/etc/prometheus
-%{__install} -d %{buildroot}/etc/systemd/system/
+
+%{__install} -d %{buildroot}%{_unitdir}
+%{__install} -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/prometheus.service
 
 install -D prometheus %{buildroot}%{_bindir}/prometheus
 install -D promtool %{buildroot}%{_bindir}/promtool
@@ -44,7 +46,6 @@ cp -r consoles %{buildroot}/etc/prometheus
 cp -r console_libraries/ %{buildroot}/etc/prometheus
 cp prometheus.yml %{buildroot}/etc/prometheus
 
-%{__install} -m 0644 %{SOURCE1} %{buildroot}/etc/systemd/system
 
 %files
 %defattr(-,prometheus,prometheus)
@@ -52,7 +53,7 @@ cp prometheus.yml %{buildroot}/etc/prometheus
 /var/lib/prometheus
 /usr/bin/prometheus
 /usr/bin/promtool
-%attr(-, root, root) /etc/systemd/system/prometheus.service
+%attr(-, root, root) %{_unitdir}/prometheus.service
 
 %changelog
 * Fri May 21 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 2.27.1-1
