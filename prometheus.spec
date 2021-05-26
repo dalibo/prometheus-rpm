@@ -53,3 +53,7 @@ cp prometheus.yml %{buildroot}/etc/prometheus
 /usr/bin/prometheus
 /usr/bin/promtool
 %attr(-, root, root) /etc/systemd/system/prometheus.service
+
+%changelog
+* Fri May 21 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 2.27.1-1
+- Initial packaging
