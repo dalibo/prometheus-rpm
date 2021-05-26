@@ -33,7 +33,11 @@ if ! getent passwd prometheus &>/dev/null ; then
 fi
 
 %install
-%{__install} -d %{buildroot}/var/lib/prometheus
+%{__install} -d -m 750 %{buildroot}/var/lib/prometheus
+%{__cp} -r consoles %{buildroot}/var/lib/prometheus
+%{__cp} -r console_libraries %{buildroot}/var/lib/prometheus
+%{__install} -d -m 750 %{buildroot}/var/lib/prometheus/data
+
 %{__install} -d %{buildroot}/etc/prometheus
 
 %{__install} -d %{buildroot}%{_unitdir}
@@ -43,8 +47,6 @@ fi
 %{__install} -m 755 prometheus %{buildroot}/usr/bin/prometheus
 %{__install} -m 755 promtool %{buildroot}/usr/bin/promtool
 
-cp -r consoles %{buildroot}/etc/prometheus
-cp -r console_libraries/ %{buildroot}/etc/prometheus
 cp prometheus.yml %{buildroot}/etc/prometheus
 
 
