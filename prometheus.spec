@@ -1,6 +1,9 @@
 %define debug_package %{nil}
 %global pkgname prometheus
 %{!?pkgrevision: %global pkgrevision 1}
+%if 0%{?rhel} == 7
+  %define dist .el7
+%endif
 
 Name:          %{pkgname}
 Version:       %{pkgversion}
