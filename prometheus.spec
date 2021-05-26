@@ -7,12 +7,16 @@ Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
 Summary:       An open-source systems monitoring and alerting toolkit with an active ecosystem.
 License:       Apache License 2.0
+URL:           https://prometheus.io/
 Source0:       %{pkgname}-%{version}.tar.gz
 Source1:       prometheus.service
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+
 %description
-Prometheus is an open-source systems monitoring and alerting toolkit with an active ecosystem.
+Prometheus is a complete open-source monitoring solution with a time series
+database. It offers a language and API for external display tools like Grafana,
+alerting and a rich set of probes
 
 %prep
 %setup -q -n %{pkgname}-%{version}.linux-amd64
