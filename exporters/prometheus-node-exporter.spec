@@ -37,7 +37,7 @@ fi
 %install
 %{__install} -d %{buildroot}/var/lib/prometheus
 %{__install} -d %{buildroot}%{_unitdir}
-%{__install} -d -m 750 %{buildroot}/etc/prometheus
+%{__install} -d -m 755 %{buildroot}/etc/prometheus
 
 %{__install} -D -m 755 node_exporter %{buildroot}%{_bindir}/node_exporter
 %{__install} -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{pkgname}.service

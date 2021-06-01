@@ -41,7 +41,7 @@ fi
 %{__cp} -r console_libraries %{buildroot}/var/lib/prometheus
 %{__install} -d -m 750 %{buildroot}/var/lib/prometheus/data
 
-%{__install} -d -m 750 %{buildroot}/etc/prometheus
+%{__install} -d -m 755 %{buildroot}/etc/prometheus
 %{__install} -m 640 prometheus.yml %{buildroot}/etc/prometheus
 
 %{__install} -d %{buildroot}%{_unitdir}
