@@ -54,3 +54,7 @@ fi
 %config(noreplace) %{_sysconfdir}/prometheus/postgres_exporter.conf
 %config(noreplace) %{_sysconfdir}/prometheus/postgres_exporter_queries.yaml
 %config(noreplace) %{_sysconfdir}/prometheus/postgres_exporter_queries-pg13.yaml
+
+%changelog
+* Tue Jun 01 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.9.0-1
+- Initial packaging
