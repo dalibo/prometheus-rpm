@@ -47,3 +47,7 @@ fi
 %attr(-,prometheus,prometheus) %config(noreplace) /etc/prometheus/node_exporter.conf
 %{_bindir}/node_exporter
 %{_unitdir}/%{pkgname}.service
+
+%changelog
+* Tue Jun 01 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 1.1.2-1
+- Initial packaging
