@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%global pkgname postgres_exporter
+%global pkgname prometheus-postgres-exporter
 %{!?pkgrevision: %global pkgrevision 1}
 %if 0%{?rhel} == 7
  %define dist .el7
@@ -10,11 +10,11 @@ Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
 Summary:       Prometheus exporter for PostgreSQL server metrics.
 License:       Apache License 2.0
-URL:           https://github.com/prometheus-community/%{pkgname}
+URL:           https://github.com/prometheus-community/postgres_exporter
 
-Source0:       %{pkgname}-%{version}.tar.gz
+Source0:       postgres_exporter-%{version}.tar.gz
 Source1:       %{pkgname}.service
-Source2:       %{pkgname}.default
+Source2:       postgres_exporter.conf
 Source3:       queries-pg13.yaml
 Source4:       queries.yaml
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -23,7 +23,7 @@ BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 postgres_exporter is an Prometheus exporter for PostgreSQL server metrics.
 
 %prep
-%setup -n %{pkgname}-%{version}.linux-amd64
+%setup -n postgres_exporter-%{version}.linux-amd64
 
 %build
 
@@ -40,17 +40,17 @@ fi
 %{__install} -d %{buildroot}/var/lib/prometheus
 %{__install} -d %{buildroot}%{_sysconfdir}/systemd/system
 
-%{__install} -D -m 755 postgres_exporter %{buildroot}%{_bindir}/%{pkgname}
+%{__install} -D -m 755 postgres_exporter %{buildroot}%{_bindir}/postgres_exporter
 %{__install} -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/systemd/system
-%{__install} -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/prometheus/%{pkgname}.conf
-%{__install} -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{pkgname}_queries-pg13.yaml
-%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/prometheus/%{pkgname}_queries.yaml
+%{__install} -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/prometheus/postgres_exporter.conf
+%{__install} -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/postgres_exporter_queries-pg13.yaml
+%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/prometheus/postgres_exporter_queries.yaml
 
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/%{pkgname}
+%{_bindir}/postgres_exporter
 %{_sysconfdir}/systemd/system/%{pkgname}.service
-%config(noreplace) %{_sysconfdir}/prometheus/%{pkgname}.conf
-%config(noreplace) %{_sysconfdir}/prometheus/%{pkgname}_queries.yaml
-%config(noreplace) %{_sysconfdir}/prometheus/%{pkgname}_queries-pg13.yaml
+%config(noreplace) %{_sysconfdir}/prometheus/postgres_exporter.conf
+%config(noreplace) %{_sysconfdir}/prometheus/postgres_exporter_queries.yaml
+%config(noreplace) %{_sysconfdir}/prometheus/postgres_exporter_queries-pg13.yaml
