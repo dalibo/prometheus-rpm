@@ -18,7 +18,8 @@ Source2:       node_exporter.conf
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
+Prometheus exporter for hardware and OS metrics exposed by *NIX kernels,
+written in Go with pluggable metric collectors.
 
 %prep
 %setup -n node_exporter-%{version}.linux-amd64
