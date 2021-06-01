@@ -28,12 +28,13 @@ Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written
 
 %install
 %{__install} -d %{buildroot}/var/lib/prometheus
-%{__install} -d %{buildroot}%{_sysconfdir}/systemd/system
+%{__install} -d %{buildroot}%{_unitdir}
 
 %{__install} -D -m 755 node_exporter %{buildroot}%{_bindir}/node_exporter
-%{__install} -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/systemd/system
+%{__install} -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{pkgname}.service
+
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/node_exporter
-%{_sysconfdir}/systemd/system/%{pkgname}.service
+%{_unitdir}/%{pkgname}.service
