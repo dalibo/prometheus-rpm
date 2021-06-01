@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%global pkgname node_exporter
+%global pkgname prometheus-node-exporter
 %{!?pkgrevision: %global pkgrevision 1}
 %if 0%{?rhel} == 7
  %define dist .el7
@@ -10,9 +10,9 @@ Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
 Summary:       Prometheus exporter for hardware and OS metrics
 License:       Apache License 2.0
-URL:           https://github.com/prometheus/%{pkgname}
+URL:           https://github.com/prometheus/node_exporter
 
-Source0:       %{pkgname}-%{version}.tar.gz
+Source0:       node_exporter-%{version}.tar.gz
 Source1:       %{pkgname}.service
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -20,7 +20,7 @@ BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
 
 %prep
-%setup -n %{pkgname}-%{version}.linux-amd64
+%setup -n node_exporter-%{version}.linux-amd64
 
 %build
 
@@ -30,10 +30,10 @@ Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written
 %{__install} -d %{buildroot}/var/lib/prometheus
 %{__install} -d %{buildroot}%{_sysconfdir}/systemd/system
 
-%{__install} -D -m 755 %{pkgname} %{buildroot}%{_bindir}/%{pkgname}
+%{__install} -D -m 755 node_exporter %{buildroot}%{_bindir}/node_exporter
 %{__install} -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/systemd/system
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/%{pkgname}
+%{_bindir}/node_exporter
 %{_sysconfdir}/systemd/system/%{pkgname}.service

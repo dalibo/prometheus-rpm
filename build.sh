@@ -56,7 +56,7 @@ build_node_exporter() {
     --define "pkgversion ${VERSION}" \
     --define "_topdir ${PWD}/tmp/rpm" \
     --define "_sourcedir ${PWD}/workspace/exporters" \
-    -bb /workspace/exporters/node_exporter.spec
+    -bb /workspace/exporters/prometheus-node-exporter.spec
 
   sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
 }
