@@ -33,21 +33,21 @@ fi
 
 %install
 %{__install} -d %{buildroot}/etc/prometheus
-%{__install} -d %{buildroot}/etc/systemd/system/
 
 install -D alertmanager %{buildroot}%{_bindir}/alertmanager
 install -D amtool %{buildroot}%{_bindir}/amtool
 
 cp -r alertmanager.yml %{buildroot}/etc/prometheus
 
-%{__install} -m 0644 %{SOURCE1} %{buildroot}/etc/systemd/system
+%{__install} -d %{buildroot}%{_unitdir}
+%{__install} -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{pkgname}.service
 
 %files
 %defattr(-,prometheus,prometheus)
 /etc/prometheus
 /usr/bin/alertmanager
 /usr/bin/amtool
-%attr(-, root, root) /etc/systemd/system/%{pkgname}.service
+%attr(-, root, root) %{_unitdir}/%{pkgname}.service
 
 %changelog
 * Wed Jun 02 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.21.0-1
