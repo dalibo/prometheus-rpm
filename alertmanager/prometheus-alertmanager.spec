@@ -35,8 +35,8 @@ fi
 %{__install} -d -m 755 %{buildroot}/etc/prometheus
 %{__install} -m 640 alertmanager.yml %{buildroot}/etc/prometheus
 
-install -D alertmanager %{buildroot}%{_bindir}/alertmanager
-install -D amtool %{buildroot}%{_bindir}/amtool
+%{__install} -D -m 755 alertmanager %{buildroot}%{_bindir}/alertmanager
+%{__install} -D -m 755 amtool %{buildroot}%{_bindir}/amtool
 
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{pkgname}.service
@@ -45,8 +45,8 @@ install -D amtool %{buildroot}%{_bindir}/amtool
 %defattr(-,prometheus,prometheus)
 %dir /etc/prometheus
 %config(noreplace) /etc/prometheus/alertmanager.yml
-/usr/bin/alertmanager
-/usr/bin/amtool
+%attr(-, root, root) /usr/bin/alertmanager
+%attr(-, root, root) /usr/bin/amtool
 %attr(-, root, root) %{_unitdir}/%{pkgname}.service
 
 %changelog
