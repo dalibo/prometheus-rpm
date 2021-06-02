@@ -41,3 +41,7 @@ cp -r alertmanager.yml %{buildroot}/etc/prometheus
 /usr/bin/alertmanager
 /usr/bin/amtool
 %attr(-, root, root) /etc/systemd/system/alertmanager.service
+
+%changelog
+* Wed Jun 02 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.21.0-1
+- Initial packaging
