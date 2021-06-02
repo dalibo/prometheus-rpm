@@ -32,19 +32,19 @@ if ! getent passwd prometheus &>/dev/null ; then
 fi
 
 %install
-%{__install} -d %{buildroot}/etc/prometheus
+%{__install} -d -m 755 %{buildroot}/etc/prometheus
+%{__install} -m 640 alertmanager.yml %{buildroot}/etc/prometheus
 
 install -D alertmanager %{buildroot}%{_bindir}/alertmanager
 install -D amtool %{buildroot}%{_bindir}/amtool
-
-cp -r alertmanager.yml %{buildroot}/etc/prometheus
 
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{pkgname}.service
 
 %files
 %defattr(-,prometheus,prometheus)
-/etc/prometheus
+%dir /etc/prometheus
+%config(noreplace) /etc/prometheus/alertmanager.yml
 /usr/bin/alertmanager
 /usr/bin/amtool
 %attr(-, root, root) %{_unitdir}/%{pkgname}.service
