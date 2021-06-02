@@ -25,7 +25,7 @@ build_alertmanager() {
   	--define "pkgversion ${VERSION}" \
   	--define "_topdir ${PWD}/tmp/rpm" \
   	--define "_sourcedir ${PWD}/workspace/alertmanager" \
-  	-bb /workspace/alertmanager/alertmanager.spec
+	-bb /workspace/alertmanager/prometheus-alertmanager.spec
 
   sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
 }

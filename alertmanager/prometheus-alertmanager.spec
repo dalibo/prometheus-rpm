@@ -1,5 +1,5 @@
 %define debug_package %{nil}
-%global pkgname alertmanager
+%global pkgname prometheus-alertmanager
 %{!?pkgrevision: %global pkgrevision 1}
 %if 0%{?rhel} == 7
  %define dist .el7
@@ -10,15 +10,16 @@ Version:       %{pkgversion}
 Release:       %{pkgrevision}%{?dist}
 Summary:       Handles alerts sent by client applications such as the Prometheus server.
 License:       Apache-2.0
-Source0:       %{pkgname}-%{version}.tar.gz
+Source0:       alertmanager-%{version}.tar.gz
 Source1:       %{pkgname}.service
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
-The Alertmanager handles alerts sent by client applications such as the Prometheus server.
+The Alertmanager handles alerts sent by client applications such as the
+Prometheus server.
 
 %prep
-%setup -q -n %{pkgname}-%{version}.linux-amd64
+%setup -q -n alertmanager-%{version}.linux-amd64
 
 %build
 
@@ -40,7 +41,7 @@ cp -r alertmanager.yml %{buildroot}/etc/prometheus
 /etc/prometheus
 /usr/bin/alertmanager
 /usr/bin/amtool
-%attr(-, root, root) /etc/systemd/system/alertmanager.service
+%attr(-, root, root) /etc/systemd/system/%{pkgname}.service
 
 %changelog
 * Wed Jun 02 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.21.0-1
