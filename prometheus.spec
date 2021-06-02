@@ -56,9 +56,10 @@ fi
 
 %files
 %defattr(-,prometheus,prometheus)
-%dir /etc/prometheus
 %config(noreplace) /etc/prometheus/prometheus.yml
-/var/lib/prometheus
+/var/lib/prometheus/consoles
+/var/lib/prometheus/console_libraries
+/var/lib/prometheus/data
 %attr(-,root,root)/usr/bin/prometheus
 %attr(-,root,root)/usr/bin/promtool
 %attr(-, root, root) %{_unitdir}/prometheus.service

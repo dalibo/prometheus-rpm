@@ -43,7 +43,6 @@ fi
 
 %files
 %defattr(-,prometheus,prometheus)
-%dir /etc/prometheus
 %config(noreplace) /etc/prometheus/alertmanager.yml
 %attr(-, root, root) /usr/bin/alertmanager
 %attr(-, root, root) /usr/bin/amtool
