@@ -52,5 +52,5 @@ fi
 %dir /var/lib/prometheus/alertmanager
 
 %changelog
-* Wed Jun 02 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.21.0-1
+* Wed Jun 02 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.22.2-1
 - Initial packaging
