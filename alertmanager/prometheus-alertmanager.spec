@@ -24,6 +24,12 @@ Prometheus server.
 %build
 
 %pre
+if ! getent passwd prometheus &>/dev/null ; then
+  useradd \
+    --system --user-group --shell /sbin/nologin \
+    --home-dir /var/lib/prometheus \
+    --comment "Prometheus User" prometheus &>/dev/null
+fi
 
 %install
 %{__install} -d %{buildroot}/etc/prometheus
