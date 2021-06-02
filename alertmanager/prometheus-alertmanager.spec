@@ -41,12 +41,15 @@ fi
 %{__install} -d %{buildroot}%{_unitdir}
 %{__install} -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{pkgname}.service
 
+%{__install} -d -m 750 %{buildroot}/var/lib/prometheus/alertmanager
+
 %files
 %defattr(-,prometheus,prometheus)
 %config(noreplace) /etc/prometheus/alertmanager.yml
 %attr(-, root, root) /usr/bin/alertmanager
 %attr(-, root, root) /usr/bin/amtool
 %attr(-, root, root) %{_unitdir}/%{pkgname}.service
+%dir /var/lib/prometheus/alertmanager
 
 %changelog
 * Wed Jun 02 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 0.21.0-1
