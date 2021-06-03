@@ -17,7 +17,7 @@ build_prometheus() {
 
 build_alertmanager() {
   # alertmanager version
-  VERSION="0.21.0"
+  VERSION="0.22.2"
   sudo wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz -O /workspace/alertmanager/alertmanager-${VERSION}.tar.gz
 
   sudo rpmbuild \
@@ -25,7 +25,7 @@ build_alertmanager() {
   	--define "pkgversion ${VERSION}" \
   	--define "_topdir ${PWD}/tmp/rpm" \
   	--define "_sourcedir ${PWD}/workspace/alertmanager" \
-  	-bb /workspace/alertmanager/alertmanager.spec
+	-bb /workspace/alertmanager/prometheus-alertmanager.spec
 
   sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
 }
