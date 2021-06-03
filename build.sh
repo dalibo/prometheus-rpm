@@ -41,14 +41,14 @@ build_postgres_exporter() {
     --define "pkgversion ${VERSION}" \
     --define "_topdir ${PWD}/tmp/rpm" \
     --define "_sourcedir ${PWD}/workspace/exporters" \
-    -bb /workspace/exporters/postgres_exporter.spec
+    -bb /workspace/exporters/prometheus-postgres-exporter.spec
 
   sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
 }
 
 build_node_exporter() {
   # node_exporter version
-  VERSION="1.0.1"
+  VERSION="1.1.2"
   sudo wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/node_exporter-${VERSION}.tar.gz
 
   sudo rpmbuild \
@@ -56,7 +56,7 @@ build_node_exporter() {
     --define "pkgversion ${VERSION}" \
     --define "_topdir ${PWD}/tmp/rpm" \
     --define "_sourcedir ${PWD}/workspace/exporters" \
-    -bb /workspace/exporters/node_exporter.spec
+    -bb /workspace/exporters/prometheus-node-exporter.spec
 
   sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
 }
