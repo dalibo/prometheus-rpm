@@ -14,6 +14,8 @@ Source0:       alertmanager-%{version}.tar.gz
 Source1:       %{pkgname}.service
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+Obsoletes:     alertmanager
+
 %description
 The Alertmanager handles alerts sent by client applications such as the
 Prometheus server.

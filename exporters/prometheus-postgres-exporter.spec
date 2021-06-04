@@ -19,6 +19,8 @@ Source3:       queries-pg13.yaml
 Source4:       queries.yaml
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+Obsoletes:     postgres_exporter
+
 %description
 postgres_exporter is an Prometheus exporter for PostgreSQL server metrics.
 
