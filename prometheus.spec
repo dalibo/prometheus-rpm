@@ -1,13 +1,12 @@
 %define debug_package %{nil}
 %global pkgname prometheus
-%{!?pkgrevision: %global pkgrevision 1}
 %if 0%{?rhel} == 7
   %define dist .el7
 %endif
 
 Name:          %{pkgname}
 Version:       %{pkgversion}
-Release:       %{pkgrevision}%{?dist}
+Release:       2%{?dist}
 Summary:       An open-source systems monitoring and alerting toolkit with an active ecosystem.
 License:       Apache License 2.0
 URL:           https://prometheus.io/
@@ -65,5 +64,8 @@ fi
 %attr(-, root, root) %{_unitdir}/prometheus.service
 
 %changelog
+* Fri Jun 04 2021 Nicolas Thauvin <nicolas.thauvin@dalibo.com> - 2.27.1-2
+- Bump revision after enhancing packaging
+
 * Fri May 21 2021 Alexandre Pereira <alexandre.pereira@dalibo.com> - 2.27.1-1
 - Initial packaging
