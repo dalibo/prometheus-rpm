@@ -3,7 +3,7 @@
 build_prometheus() {
   # Prometheus version
   VERSION="2.27.1"
-  sudo wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz -O /workspace/prometheus-${VERSION}.tar.gz
+  sudo wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz -O /workspace/prometheus-${VERSION}.tar.gz -c
 
   sudo rpmbuild \
   	--clean \
@@ -18,7 +18,7 @@ build_prometheus() {
 build_alertmanager() {
   # alertmanager version
   VERSION="0.22.2"
-  sudo wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz -O /workspace/alertmanager/alertmanager-${VERSION}.tar.gz
+  sudo wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz -O /workspace/alertmanager/alertmanager-${VERSION}.tar.gz -c
 
   sudo rpmbuild \
   	--clean \
@@ -32,8 +32,8 @@ build_alertmanager() {
 
 build_postgres_exporter() {
   # postgres_exporter version
-  VERSION="0.9.0"
-  sudo wget https://github.com/prometheus-community/postgres_exporter/releases/download/v${VERSION}/postgres_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/postgres_exporter-${VERSION}.tar.gz
+  VERSION="0.10.0"
+  sudo wget https://github.com/prometheus-community/postgres_exporter/releases/download/v${VERSION}/postgres_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/postgres_exporter-${VERSION}.tar.gz -c 
   sudo wget https://raw.githubusercontent.com/prometheus-community/postgres_exporter/v${VERSION}/queries.yaml -O /workspace/exporters/queries.yaml
 
   sudo rpmbuild \
@@ -49,7 +49,7 @@ build_postgres_exporter() {
 build_node_exporter() {
   # node_exporter version
   VERSION="1.1.2"
-  sudo wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/node_exporter-${VERSION}.tar.gz
+  sudo wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/node_exporter-${VERSION}.tar.gz -c
 
   sudo rpmbuild \
     --clean \
