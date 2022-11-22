@@ -1,4 +1,5 @@
 prometheus-*.tar.gz
 exporters/*.tar.gz
+exporters/queries.yaml
 alertmanager/*.tar.gz
 build/
