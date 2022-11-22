@@ -11,7 +11,7 @@ build_prometheus() {
   	--define "_topdir ${PWD}/tmp/rpm" \
   	--define "_sourcedir ${PWD}/workspace" \
   	-bb /workspace/prometheus.spec
-  ls -l /workspace
+
   cp ${PWD}/tmp/rpm/x86_64/*.rpm ${PWD}/workspace/build/
 }
 
