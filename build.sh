@@ -8,11 +8,11 @@ build_prometheus() {
   rpmbuild \
   	--clean \
   	--define "pkgversion ${VERSION}" \
-  	--define "_topdir ${PWD}/tmp/rpm" \
-  	--define "_sourcedir ${PWD}/workspace" \
+  	--define "_topdir /tmp/rpm" \
+  	--define "_sourcedir /workspace" \
   	-bb /workspace/prometheus.spec
 
-  cp ${PWD}/tmp/rpm/x86_64/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 build_alertmanager() {
@@ -23,11 +23,11 @@ build_alertmanager() {
   rpmbuild \
   	--clean \
   	--define "pkgversion ${VERSION}" \
-  	--define "_topdir ${PWD}/tmp/rpm" \
-  	--define "_sourcedir ${PWD}/workspace/alertmanager" \
+  	--define "_topdir /tmp/rpm" \
+  	--define "_sourcedir /workspace/alertmanager" \
 	-bb /workspace/alertmanager/prometheus-alertmanager.spec
 
-  cp ${PWD}/tmp/rpm/x86_64/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 build_postgres_exporter() {
@@ -39,11 +39,11 @@ build_postgres_exporter() {
   rpmbuild \
     --clean \
     --define "pkgversion ${VERSION}" \
-    --define "_topdir ${PWD}/tmp/rpm" \
-    --define "_sourcedir ${PWD}/workspace/exporters" \
+    --define "_topdir /tmp/rpm" \
+    --define "_sourcedir /workspace/exporters" \
     -bb /workspace/exporters/prometheus-postgres-exporter.spec
 
-  cp ${PWD}/tmp/rpm/x86_64/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 build_node_exporter() {
@@ -54,17 +54,17 @@ build_node_exporter() {
   rpmbuild \
     --clean \
     --define "pkgversion ${VERSION}" \
-    --define "_topdir ${PWD}/tmp/rpm" \
-    --define "_sourcedir ${PWD}/workspace/exporters" \
+    --define "_topdir /tmp/rpm" \
+    --define "_sourcedir /workspace/exporters" \
     -bb /workspace/exporters/prometheus-node-exporter.spec
 
-  cp ${PWD}/tmp/rpm/x86_64/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 
 sudo yum install wget epel-release -y
-sudo mkdir -p ${PWD}/workspace/build/
-sudo chown builder: ${PWD}/workspace/build/
+sudo mkdir -p /workspace/build/
+sudo chown builder: /workspace/build/
 
 case $1 in
   prometheus )
