@@ -1,5 +1,7 @@
 # Prometheus-rpm
 
+/!\ This repository is no longer active. Please consult https://github.com/dalibo/prometheus-pkgs .
+
 Build Prometheus, Alert Manager and node/postgres_exporter rpm for RHEL/CentOS 7 & 8.
 
 ## Usage
