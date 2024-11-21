@@ -2,68 +2,69 @@
 
 build_prometheus() {
   # Prometheus version
-  VERSION="2.27.1"
-  sudo wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz -O /workspace/prometheus-${VERSION}.tar.gz -c
+  VERSION="2.40.2"
+  wget https://github.com/prometheus/prometheus/releases/download/v${VERSION}/prometheus-${VERSION}.linux-amd64.tar.gz -O /workspace/prometheus-${VERSION}.tar.gz -c
 
-  sudo rpmbuild \
+  rpmbuild \
   	--clean \
   	--define "pkgversion ${VERSION}" \
-  	--define "_topdir ${PWD}/tmp/rpm" \
-  	--define "_sourcedir ${PWD}/workspace" \
+  	--define "_topdir /tmp/rpm" \
+  	--define "_sourcedir /workspace" \
   	-bb /workspace/prometheus.spec
 
-  sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 build_alertmanager() {
   # alertmanager version
-  VERSION="0.22.2"
-  sudo wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz -O /workspace/alertmanager/alertmanager-${VERSION}.tar.gz -c
+  VERSION="0.24.0"
+  wget https://github.com/prometheus/alertmanager/releases/download/v${VERSION}/alertmanager-${VERSION}.linux-amd64.tar.gz -O /workspace/alertmanager/alertmanager-${VERSION}.tar.gz -c
 
-  sudo rpmbuild \
+  rpmbuild \
   	--clean \
   	--define "pkgversion ${VERSION}" \
-  	--define "_topdir ${PWD}/tmp/rpm" \
-  	--define "_sourcedir ${PWD}/workspace/alertmanager" \
+  	--define "_topdir /tmp/rpm" \
+  	--define "_sourcedir /workspace/alertmanager" \
 	-bb /workspace/alertmanager/prometheus-alertmanager.spec
 
-  sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 build_postgres_exporter() {
   # postgres_exporter version
-  VERSION="0.10.0"
-  sudo wget https://github.com/prometheus-community/postgres_exporter/releases/download/v${VERSION}/postgres_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/postgres_exporter-${VERSION}.tar.gz -c 
-  sudo wget https://raw.githubusercontent.com/prometheus-community/postgres_exporter/v${VERSION}/queries.yaml -O /workspace/exporters/queries.yaml
+  VERSION="0.11.1"
+  wget https://github.com/prometheus-community/postgres_exporter/releases/download/v${VERSION}/postgres_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/postgres_exporter-${VERSION}.tar.gz -c
+  wget https://raw.githubusercontent.com/prometheus-community/postgres_exporter/v${VERSION}/queries.yaml -O /workspace/exporters/queries.yaml
 
-  sudo rpmbuild \
+  rpmbuild \
     --clean \
     --define "pkgversion ${VERSION}" \
-    --define "_topdir ${PWD}/tmp/rpm" \
-    --define "_sourcedir ${PWD}/workspace/exporters" \
+    --define "_topdir /tmp/rpm" \
+    --define "_sourcedir /workspace/exporters" \
     -bb /workspace/exporters/prometheus-postgres-exporter.spec
 
-  sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 build_node_exporter() {
   # node_exporter version
-  VERSION="1.1.2"
-  sudo wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/node_exporter-${VERSION}.tar.gz -c
+  VERSION="1.4.0"
+  wget https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-amd64.tar.gz -O /workspace/exporters/node_exporter-${VERSION}.tar.gz -c
 
-  sudo rpmbuild \
+  rpmbuild \
     --clean \
     --define "pkgversion ${VERSION}" \
-    --define "_topdir ${PWD}/tmp/rpm" \
-    --define "_sourcedir ${PWD}/workspace/exporters" \
+    --define "_topdir /tmp/rpm" \
+    --define "_sourcedir /workspace/exporters" \
     -bb /workspace/exporters/prometheus-node-exporter.spec
 
-  sudo cp ${PWD}/tmp/rpm/RPMS/*/*.rpm ${PWD}/workspace/build/
+  cp /tmp/rpm/x86_64/*.rpm /workspace/build/
 }
 
 
 sudo yum install wget epel-release -y
-sudo mkdir -p ${PWD}/workspace/build/
+sudo mkdir -p /workspace/build/
+sudo chown builder: /workspace/build/
 
 case $1 in
   prometheus )

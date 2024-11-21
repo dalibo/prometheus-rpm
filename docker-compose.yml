@@ -14,7 +14,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.builder8
-    image: dalibo/prometheus-builder:centos8
+    image: dalibo/prometheus-builder:rockylinux8
+    user: builder
     environment:
     - VERSION
     volumes:

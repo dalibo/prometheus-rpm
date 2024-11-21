@@ -1,5 +1,5 @@
 # -*- dockerfile -*-
-FROM centos:8
+FROM rockylinux:8
 
 RUN yum install -y make git sudo epel-release yum-utils rpm-build && \
     yum install -y python2 python2-pip python2-rpm-macros python2-setuptools && \
